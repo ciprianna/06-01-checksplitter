@@ -3,12 +3,24 @@
 require "minitest/autorun"
 require_relative "check_splitter.rb"
 
-class CheckSplitterTest < Minitest::test
+class CheckSplitterTest < Minitest::Test
   # One test will be for the initialize method. It should return an args hash
   #   with default values. I will test if it returns that hash as expected.
+  def test_initialize_hash_created
+    new_check = CheckSplitter.new
+    new_check.args
+
+    assert_equal({total_cost: 20, tip_percentage: 0.15, people: 2},new_check.args)
+  end
 
   # The next test will be for the tip_percentage method. It should be able to
   #   take an Integer or Float, and return it as a Float.
+  def test_tip_percentage
+    new_check = CheckSplitter.new(tip_percentage: 15)
+    new_check.tip_percent(new_check.args)
+
+    assert_equal(0.15, new_check.tip_percent(new_check.args))
+  end
 
   # Another test will be for the neg_tip method. It should be able to take a
   #   negative Float as an input and set the value to 0.15.

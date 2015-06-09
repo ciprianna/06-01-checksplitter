@@ -4,18 +4,18 @@
 class CheckSplitter
 
   # Shows which attributes are accessible
-  attr_accessor :total_cost, :tip_percentage, :people
+  attr_accessor :total_cost, :tip_percentage, :people, :args
 
   # Initializes the attributes as optional; sets default values in the options
   # hash and merges the hash with inputs (if given). Uses those defaults as
   # initialized attributes. Calls methods below with args as an argument.
   def initialize(args = {})
     options = {total_cost: 20, tip_percentage: 0.15, people: 2}
-    args = options.merge(args)
+    @args = options.merge(args)
     @total_cost = args[:total_cost]
-    tip_percent(args)
-    people_count(args)
-    neg_tip(args)
+    tip_percent(@args)
+    people_count(@args)
+    neg_tip(@args)
   end
 
 
