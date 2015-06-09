@@ -36,20 +36,39 @@ class CheckSplitterTest < Minitest::Test
     assert_equal(1, new_check.people_count(new_check.args))
   end
 
-  # A test for the total_cost_of_meal method should take two values as Integers
+  # A test for the total_cost_with_tip method should take two values as Integers
   #   and return the first value (total_cost) plus the first value times the
   #   second value (tip_percentage)
-  
+  def test_total_cost_of_meal
+    new_check = CheckSplitter.new(total_cost: 10, tip_percentage: 10)
+
+    assert_equal(11, new_check.total_cost_with_tip)
+  end
 
   # The base_cost_per_person method should return the first value input, Float,
   #   divided by the second value input, an Integer.
+  def test_base_cost_per_person
+    new_check = CheckSplitter.new(total_cost: 10, people: 1)
+
+    assert_equal(10, new_check.base_cost_per_person)
+  end
 
   # A test for the tip_per_person method will take one value, a Float
   #   (total_cost), and multiply it by a second value, another Float
   #   (tip_percentage), and divides it by an Integer (people). Should return
   #   a Float.
+  def test_tip_per_person
+    new_check = CheckSplitter.new(total_cost: 10, tip_percentage: 10, people: 1)
+
+    assert_equal(1, new_check.tip_per_person)
+  end
 
   # The final_per_person method should take two Floats and add them together.
   #   The return should be another Float.
+  def test_final_per_person
+    new_check = CheckSplitter.new(total_cost: 10, tip_percentage: 10, people: 1)
+
+    assert_equal(11, new_check.final_per_person)
+  end
 
 end
