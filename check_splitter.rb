@@ -21,6 +21,11 @@ class CheckSplitter
 
   # Makes the default value a decimal, so the user can input either integers or
   # floats.
+  #
+  # args - Hash that we will pull the :tip_percentage value out. This value is
+  #   a Float.
+  #
+  # Returns an instance variable called tip_percentage, containing a Float.
   def tip_percent(args)
     tip_percent_temp = args[:tip_percentage].to_f
     if tip_percent_temp >= 1
