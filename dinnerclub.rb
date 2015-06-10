@@ -24,10 +24,7 @@ class DinnerClub
   # location - string passed by the user.
   # who_paid - string passed by the user.
   #
-  # Updates the running_balance hash using the running_balance_update method.
-  # Displays the new totals for all members using the display_running_balance
-  #   method.
-  # Updates the club_history hash using the add_event method.
+  # Returns nothing.
   def new_event(total_cost, tip_percentage, people, date, location, who_paid)
     event = ClubEvent.new(total_cost, tip_percentage, people, date, location, who_paid)
     club_history_update(club_history, event.event_log)
@@ -41,25 +38,21 @@ class DinnerClub
   #   the array contains location, and the attendees_hash, both created in
   #   the new_event method.
   # event_log - Hash taken from the ClubEvent Class's event_update method.
-  # Takes the club_history hash and destructively changes it by merging it with
-  # the event_log.
+  #
+  # Returns the updated club_history Hash.
   def club_history_update(club_history, event_log)
     club_history.merge!(event_log)
   end
 
   # Updates the balance if a new dinner event occurred.
   #
-  # running_balance - hash that is continually being updated as a new event
+  # running_balance - Hash that is continually being updated as a new event
   #   occurs.
-  # club_history - hash with the date as a key and the value as an array. array
+  # club_history - Hash with the date as a key and the value as an Array. Array
   #   contains the location and the attendees_hash (from ClubEvent class).
   #   attendees_hash contains the member name and the cost member paid at event.
   #
-  # Method iterates through club_history to find the attendees_hash (index 1 of
-  #   the array stored as the value in the club_history hash). It then iterates
-  #   over the attendees_hash to populate the running_balance hash with member
-  #   name and costs paid to the group. It adds the costs to the current value
-  #   already stored at the key.
+  # Returns the updated club_history Hash
   def running_balance_update(running_balance, club_history)
     club_history.each do |date, array|
       array[1].each do |name, amount|
@@ -70,12 +63,7 @@ class DinnerClub
 
   # Displays the current running balance of each member of DinnerClub.
   #
-  # Puts a line break.
-  # Puts header information for the table.
-  # Prints a dashed line to separate header from table information.
-  # Puts a line break.
-  # Iterates over running_balance hash to puts name and balance; formats balance
-  #   to display as currency.
+  # Returns the running_balance Hash formatted for display.
   def display_running_balance(running_balance)
     puts "\n"
     puts "Member Name".ljust(20) + "Member Balance".rjust(10)
@@ -89,14 +77,11 @@ class DinnerClub
 
   # Displays the log of events nicely. Will only show if called specifically.
   #
-  # club_history - hash with the date as a key, value is an array with location
+  # club_history - Hash with the date as a key, value is an Array with location
   #   and the attendees_hash. attendees_hash has a key of member name and value
   #   of cost paid at the event.
   #
-  # Puts a blank line before and after the table.
-  # Puts a header followed by a dashed line.
-  # Iterates through club_history hash, displaying sections to match header
-  #   locations.
+  # Returns club_history Hash formatted for display.
   def display_history(club_history)
     puts "\n"
     puts "Date\t\tLocation\t" + "Members and Payments".rjust(25)
