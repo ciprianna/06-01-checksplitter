@@ -52,7 +52,7 @@ class DinnerClub
   #   contains the location and the attendees_hash (from ClubEvent class).
   #   attendees_hash contains the member name and the cost member paid at event.
   #
-  # Returns the updated club_history Hash
+  # Returns the club_history Hash
   def running_balance_update(running_balance, club_history)
     club_history.each do |date, array|
       array[1].each do |name, amount|
